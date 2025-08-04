@@ -36,6 +36,19 @@ We introduce a cross-modal feature encoder designed to capture joint features fr
 
 ![image](pictures/cross-modal_feature_encoder.jpg)
 
+# Candidate clip filter module
+
+Among the detected candidate ME clips, only a subset represents genuine MEs, with the remainder being false positives attributed to noise or artifacts. To refine these candidates, we introduce a Candidate Clip Filter (CCF) module that incorporates the heart rate slope (HRS) as an additional validation metric. Our analysis reveals that intense emotional states activate the sympathetic nervous system, resulting in elevated heart rates and more pronounced transient changes in HR (quantified by HRS values) at the apex of MEs. Consequently, a candidate ME is classified as genuine if the HRS at its apex frame exceeds η times the trial’s average slope value; otherwise, it is deemed spurious.
+
+![image](pictures/CCF.jpg)
+
+# Experiments
+
+![image](pictures/table.jpg)
+
+![image](pictures/results.jpg)
+
+
 
 
 
