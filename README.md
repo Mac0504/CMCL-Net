@@ -22,7 +22,19 @@ To conduct visual inspection, we present a representative example of ECG signals
 
 ![image](pictures/visual_inspection.jpg)
 
+# Cross-Modal Contrastive Learning Network
 
+we propose a cross-modal contrastive learning network (CMCL-Net) to enhance ME spotting by integrating ECG signals. The detailed pipeline is outlined as follows:
+
+(i) Sample Pair Generation Module: This module generates positive and negative sample pairs. Positive pairs consist of two ME samples, whereas negative pairs include one ME sample and one non-ME sample. Each sample integrates a facial video sequence with corresponding ECG data aligned within a temporal window. (ii) Contrastive Learning and Classification Module: Utilizing the generated sample pairs, this module performs contrastive learning and classification, comprising pre-training and fine-tuning stages. During pre-training, a triplet loss function optimizes the cross-modal feature encoder by maximizing the distance between fused features of negative pairs while minimizing the distance between those of positive pairs. In the fine-tuning phase, the pre-trained feature encoder processes sample features, which are subsequently classified as ME or non-ME by a classifier. A classification loss function refines the parameters of both the feature encoder and the classifier. (iii) Candidate Clip Filtering (CCF) Module: Post-processing is conducted by the CCF module, which evaluates samples based on the instantaneous heart rate slope (HRS) of the apex frame. Samples with an HRS exceeding a predefined threshold are classified as genuine MEs, while those below the threshold are deemed spurious and excluded.
+
+![image](pictures/CMCL-Net.jpg)
+
+# Cross-modal feature encoder
+
+We introduce a cross-modal feature encoder designed to capture joint features from video and ECG data. The encoder adopts a dual-stream structure, which independently processes video and ECG features prior to their fusion. Each stream comprises a patch embedding (PE) module, a cross-attention block (CAB), and a multilayer perceptron (MLP). To stabilize training and accelerate model convergence, layer normalization is applied before each CAB and MLP, while residual connections are incorporated to further bolster the network's robustness and representational capacity.
+
+![image](pictures/cross-modal_feature_encoder.jpg)
 
 
 
